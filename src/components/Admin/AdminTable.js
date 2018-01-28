@@ -150,7 +150,7 @@ export default class AdminTable extends Component {
         // name={name}
         showModal={showModal}
         closeModal={this.close}
-        data={data.update.form}
+        data={data.update}
         formData={editData}
       />
     );
@@ -185,14 +185,13 @@ export default class AdminTable extends Component {
           data.view.table.tableFormat &&
           data.view.table.tableFormat.length && (
             <BootstrapTable
-              data={admin[data.view.table.stateName]}
               striped
+              data={[{
+                id: 12, firstName: 'firstname', lastName: 'lastname', username: 'username', email: 'email'
+              }]}
               hover
               condensed
               maxHeight="400"
-              tableStyle={{
-                marginBottom: '20px'
-              }}
               pagination
               options={options}
               remote
@@ -215,3 +214,5 @@ export default class AdminTable extends Component {
     ];
   }
 }
+
+{/* data={admin[data.view.table.stateName]} */ }

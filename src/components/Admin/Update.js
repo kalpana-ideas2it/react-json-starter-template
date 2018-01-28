@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import { Button, Modal } from 'react-bootstrap/lib';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Create } from '../../components';
+import { update, create } from '../../redux/modules/admin';
 
+@connect(() => { }, { update, create })
 export default class Update extends Component {
   static propTypes = {
     showModal: PropTypes.bool.isRequired,
-    name: PropTypes.string.isRequired,
     closeModal: PropTypes.func.isRequired,
     data: PropTypes.o,
-    formData: PropTypes.o
+    formData: PropTypes.o,
+    update: PropTypes.func.isRequired,
+    create: PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -17,27 +21,27 @@ export default class Update extends Component {
     formData: {}
   };
 
-  handleSubmit = () => {
-    console.log('update');
+  handleSubmit = async formData => {
+    console.log('update', formData);
+    const { data } = this.props;
+    this.props[data.operation](data.api, formData);
   }
 
   render() {
     const {
       showModal,
-      name,
       data,
       formData
     } = this.props;
     return (
       <Modal show={showModal} onHide={this.props.closeModal}>
         <Modal.Header>
-          <Modal.Title>Edit {name}</Modal.Title>
+          <Modal.Title>{data.operation}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Create
-            jsonData={data}
             onSubmit={this.handleSubmit}
-            formData={formData}
+            formData={data.form}
             initialValues={formData}
           />
         </Modal.Body>

@@ -71,7 +71,7 @@ export default class UserForm extends Component {
   };
 
   static defaultProps = {
-    jsonData: {}
+    formData: {}
   };
 
   componentWillMount() {
@@ -79,27 +79,25 @@ export default class UserForm extends Component {
   }
 
   render() {
-    const { jsonData, handleSubmit, formData } = this.props;
-    const value = 'dsvkjhkdsnkjnfdkv';
-    console.log('CREATE DATA ======= > ', jsonData);
+    const { formData, handleSubmit } = this.props;
+    console.log('CREATE DATA ======= > ', formData);
     return (
       <div>
         <form
           className="form-horizontal"
           onSubmit={handleSubmit}
         >
-          {jsonData.fields.map(field => (
+          {formData.fields.map(field => (
             <Field
               name={field.name}
               type={field.type}
               component={Input}
               label={field.label}
               validate={field.validation && getValidation(field.validation)}
-              // value={field.name}
             />
           ))}
           <button className="btn btn-success" type="submit">
-            <i className="fa fa-sign-in" /> {jsonData.process}
+            <i className="fa fa-sign-in" /> {formData.process}
           </button>
         </form>
       </div>
