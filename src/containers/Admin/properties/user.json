@@ -1,0 +1,83 @@
+{
+  "create": {
+    "process": "Add User",
+    "api": "/api/addUser",
+    "fields": [
+      {
+        "type": "text",
+        "name": "email",
+        "placeholder": "email",
+        "label": "Email",
+        "validation": [
+          {
+            "method": "required"
+          },
+          {
+            "method": "email"
+          }
+        ]
+      },
+      {
+        "type": "password",
+        "name": "password",
+        "placeholder": "password",
+        "label": "Password",
+        "validation": [
+          {
+            "method": "required"
+          }
+        ]
+      },
+      {
+        "type": "password_confirmation",
+        "name": "password_confirmation",
+        "placeholder": "password_confirmation",
+        "label": "Password Confirmation",
+        "validation": [
+          {
+            "method": "required"
+          },
+          {
+            "method": "match",
+            "param": "password"
+          }
+        ]
+      }
+    ]
+  },
+  "update": {
+    "form": {
+      "fields": [
+        {
+          "type": "text",
+          "name": "email",
+          "placeholder": "email",
+          "label": "Email",
+          "validation": [
+            {
+              "method": "required"
+            },
+            {
+              "method": "email"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "view": {
+    "table": {
+      "api": "/api/users",
+      "stateName": "User",
+      "tableFormat": [
+        { "dataField": "id", "name": "id" },
+        { "isKey": true, "dataField": "firstName", "name": "firstName" },
+        { "dataField": "lastName", "name": "lastName" },
+        { "dataField": "username", "name": "username" },
+        { "dataField": "email", "name": "email" },
+        { "dataField": "", "name": "actions" }
+      ]
+    }
+  },
+  "delete": "delete"
+}
